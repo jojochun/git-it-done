@@ -118,7 +118,15 @@ var getFeaturedRepos = function (language) {
 // buttonClickHandler
 var buttonClickHandler = function (event) {
     var language = event.target.getAttribute("data-language");
-    console.log(language);
+    console.log(language)
+
+    if (language) {
+        getFeaturedRepos(language);
+
+        // clear old content
+        repoContainerEl.textContent = "";
+    }
+
 }
 
 
