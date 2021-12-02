@@ -1,5 +1,27 @@
 var issueContainerEl = document.querySelector("#issues-container");
 var limitWarningEl = document.querySelector("#limit-warning");
+var queryString = document.location.search;   //queryString currently is ?repo=microsoft/activities
+var repoNameEl = document.querySelector("#repo-name");
+
+
+
+// function to get repoName, by split() method
+var repoName = queryString.split("=")[1];   // get the second [1] element of array after split
+
+var getRepoName = function () {
+    var queryString = document.location.search;
+    var repoName = queryString.split("=")[1];
+    if (repoName) {
+        repoNameEl.textContent = repoName;
+        getRepoIssues(repoName);
+    }
+    else {
+        document.location.replace("./index.html")
+    }
+}
+
+
+
 
 
 // function to take in repo name as a parameter
@@ -21,7 +43,7 @@ var getRepoIssues = function (repo) {
             });
         }
         else {
-            alert("There was a problem with your request!");
+            document.location.replace("./index.html");        // redirect to homepage
         }
     });
 };
